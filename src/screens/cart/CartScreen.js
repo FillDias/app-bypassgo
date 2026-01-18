@@ -9,7 +9,7 @@ import {
   StatusBar,
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeFromCart, updateQuantity, clearCart } from '../redux/slices/cartSlice';
+import { removeFromCart, updateQuantity, clearCart } from '../../redux/slices/cartSlice';
 
 const CartScreen = ({ navigation }) => {
   const dispatch = useDispatch();
