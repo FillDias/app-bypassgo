@@ -6,13 +6,13 @@ import {
   KeyboardAvoidingView,
   Platform,
   TouchableOpacity,
+  Text,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/slices/authSlice';
 import Input from '../../components/atoms/Input';
 import Button from '../../components/atoms/Button';
 import AppText from '../../components/atoms/AppText';
-
 
 const RegisterScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -101,16 +101,16 @@ const RegisterScreen = ({ navigation }) => {
             style={styles.backButton}
             onPress={() => navigation.goBack()}
           >
-            <Text variant="h3">←</Text>
+            <AppText variant="h3">←</AppText>
           </TouchableOpacity>
 
           <View style={styles.headerContent}>
-            <Text variant="h2" style={styles.title}>
+            <AppText variant="h2" style={styles.title}>
               Criar Conta
-            </Text>
-            <Text variant="body" color="#666" style={styles.subtitle}>
+            </AppText>
+            <AppText variant="body" color="#666" style={styles.subtitle}>
               Preencha seus dados para começar
-            </Text>
+            </AppText>
           </View>
         </View>
 
@@ -173,13 +173,13 @@ const RegisterScreen = ({ navigation }) => {
         </View>
 
         <View style={styles.footer}>
-          <Text variant="body" color="#666" align="center">
+          <AppText variant="body" color="#666" align="center">
             Já tem uma conta?{' '}
-          </Text>
+          </AppText>
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Text variant="body" color="#1a1a1a" style={styles.loginLink}>
+            <AppText variant="body" color="#1a1a1a" style={styles.loginLink}>
               Entrar
-            </Text>
+            </AppText>
           </TouchableOpacity>
         </View>
       </ScrollView>

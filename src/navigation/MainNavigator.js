@@ -2,8 +2,7 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useSelector } from 'react-redux';
-import { View } from 'react-native';
-import AppText from '../components/atoms/AppText';
+import { View, Text } from 'react-native'; // Importa Text do React Native
 import Badge from '../components/atoms/Badge';
 
 // Screens

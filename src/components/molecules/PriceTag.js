@@ -12,31 +12,31 @@ const PriceTag = ({
   return (
     <View style={[styles.container, style]}>
       {oldPrice && (
-        <Text
+        <AppText
           variant="bodySmall"
           color="#999"
           style={styles.oldPrice}
         >
           R$ {oldPrice.toLocaleString('pt-BR')}
-        </Text>
+        </AppText>
       )}
 
       <View style={styles.priceRow}>
-        <Text
+        <AppText
           variant={size === 'large' ? 'h2' : size === 'medium' ? 'h3' : 'h4'}
           color="#1a1a1a"
           style={styles.price}
         >
           R$ {price.toLocaleString('pt-BR')}
-        </Text>
+        </AppText>
 
-        <Text
+        <AppText
           variant="bodySmall"
           color="#666"
           style={styles.period}
         >
           /{period}
-        </Text>
+        </AppText>
       </View>
     </View>
   );

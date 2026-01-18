@@ -30,39 +30,39 @@ const DateRangePicker = ({
 
   return (
     <View style={[styles.container, style]}>
-      <Text variant="h4" style={styles.title}>Período do Aluguel</Text>
+      <AppText variant="h4" style={styles.title}>Período do Aluguel</AppText>
 
       <View style={styles.datesContainer}>
         <TouchableOpacity
           style={styles.dateButton}
           onPress={() => setShowStartPicker(true)}
         >
-          <Text variant="caption" color="#666">Retirada</Text>
-          <Text variant="body" style={styles.dateText}>
+          <AppText variant="caption" color="#666">Retirada</AppText>
+          <AppText variant="body" style={styles.dateText}>
             📅 {formatDate(startDate)}
-          </Text>
+          </AppText>
         </TouchableOpacity>
 
         <View style={styles.arrow}>
-          <Text variant="h3">→</Text>
+          <AppText variant="h3">→</AppText>
         </View>
 
         <TouchableOpacity
           style={styles.dateButton}
           onPress={() => setShowEndPicker(true)}
         >
-          <Text variant="caption" color="#666">Devolução</Text>
-          <Text variant="body" style={styles.dateText}>
+          <AppText variant="caption" color="#666">Devolução</AppText>
+          <AppText variant="body" style={styles.dateText}>
             📅 {formatDate(endDate)}
-          </Text>
+          </AppText>
         </TouchableOpacity>
       </View>
 
       {startDate && endDate && (
         <View style={styles.summary}>
-          <Text variant="bodySmall" color="#666">
-            Total: <Text variant="bold">{calculateDays()} dia(s)</Text>
-          </Text>
+          <AppText variant="bodySmall" color="#666">
+            Total: <AppText variant="bold">{calculateDays()} dia(s)</AppText>
+          </AppText>
         </View>
       )}
 
@@ -75,12 +75,12 @@ const DateRangePicker = ({
       >
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
-            <Text variant="h3" style={styles.modalTitle}>
+            <AppText variant="h3" style={styles.modalTitle}>
               Selecionar Data de Retirada
-            </Text>
-            <Text variant="body" color="#666" style={styles.modalInfo}>
+            </AppText>
+            <AppText variant="body" color="#666" style={styles.modalInfo}>
               (Em produção, aqui teria um calendário interativo)
-            </Text>
+            </AppText>
             <Button
               title="OK"
               onPress={() => {
@@ -100,12 +100,12 @@ const DateRangePicker = ({
       >
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
-            <Text variant="h3" style={styles.modalTitle}>
+            <AppText variant="h3" style={styles.modalTitle}>
               Selecionar Data de Devolução
-            </Text>
-            <Text variant="body" color="#666" style={styles.modalInfo}>
+            </AppText>
+            <AppText variant="body" color="#666" style={styles.modalInfo}>
               (Em produção, aqui teria um calendário interativo)
-            </Text>
+            </AppText>
             <Button
               title="OK"
               onPress={() => {

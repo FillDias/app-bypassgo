@@ -5,6 +5,7 @@ import {
   Image,
   StyleSheet,
   TouchableOpacity,
+  Text,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/slices/cartSlice';
@@ -50,8 +51,8 @@ const ProductDetailScreen = ({ route, navigation }) => {
     <View style={styles.infoRow}>
       <Text style={styles.infoIcon}>{icon}</Text>
       <View style={styles.infoContent}>
-        <Text variant="caption" color="#666">{label}</Text>
-        <Text variant="body" style={styles.infoValue}>{value}</Text>
+        <AppText variant="caption" color="#666">{label}</AppText>
+        <AppText variant="body" style={styles.infoValue}>{value}</AppText>
       </View>
     </View>
   );
@@ -65,12 +66,12 @@ const ProductDetailScreen = ({ route, navigation }) => {
           {/* Header */}
           <View style={styles.header}>
             <View style={styles.headerLeft}>
-              <Text variant="caption" color="#666" style={styles.brand}>
+              <AppText variant="caption" color="#666" style={styles.brand}>
                 {product.brand}
-              </Text>
-              <Text variant="h2" style={styles.name}>
+              </AppText>
+              <AppText variant="h2" style={styles.name}>
                 {product.name}
-              </Text>
+              </AppText>
             </View>
 
             {product.rating && (
@@ -89,18 +90,18 @@ const ProductDetailScreen = ({ route, navigation }) => {
             />
             {product.available !== false && (
               <View style={styles.availableBadge}>
-                <Text variant="bodySmall" color="#28a745">
+                <AppText variant="bodySmall" color="#28a745">
                   ✓ Disponível
-                </Text>
+                </AppText>
               </View>
             )}
           </View>
 
           {/* Informações */}
           <View style={styles.infoSection}>
-            <Text variant="h3" style={styles.sectionTitle}>
+            <AppText variant="h3" style={styles.sectionTitle}>
               Informações
-            </Text>
+            </AppText>
 
             <InfoRow
               icon="📦"
@@ -134,33 +135,33 @@ const ProductDetailScreen = ({ route, navigation }) => {
 
           {/* Descrição */}
           <View style={styles.descriptionSection}>
-            <Text variant="h3" style={styles.sectionTitle}>
+            <AppText variant="h3" style={styles.sectionTitle}>
               Descrição
-            </Text>
-            <Text variant="body" color="#666" style={styles.description}>
+            </AppText>
+            <AppText variant="body" color="#666" style={styles.description}>
               {product.description}
-            </Text>
+            </AppText>
           </View>
 
           {/* Características */}
           <View style={styles.featuresSection}>
-            <Text variant="h3" style={styles.sectionTitle}>
+            <AppText variant="h3" style={styles.sectionTitle}>
               Características
-            </Text>
+            </AppText>
             {isMotorcycle ? (
               <>
-                <Text style={styles.feature}>✓ Motor de alta performance</Text>
-                <Text style={styles.feature}>✓ Suspensão ajustável</Text>
-                <Text style={styles.feature}>✓ Freios de última geração</Text>
-                <Text style={styles.feature}>✓ Revisão completa antes da locação</Text>
-                <Text style={styles.feature}>✓ Seguro incluso</Text>
+                <AppText style={styles.feature}>✓ Motor de alta performance</AppText>
+                <AppText style={styles.feature}>✓ Suspensão ajustável</AppText>
+                <AppText style={styles.feature}>✓ Freios de última geração</AppText>
+                <AppText style={styles.feature}>✓ Revisão completa antes da locação</AppText>
+                <AppText style={styles.feature}>✓ Seguro incluso</AppText>
               </>
             ) : (
               <>
-                <Text style={styles.feature}>✓ Material de alta qualidade</Text>
-                <Text style={styles.feature}>✓ Higienizado após cada uso</Text>
-                <Text style={styles.feature}>✓ Tamanhos variados disponíveis</Text>
-                <Text style={styles.feature}>✓ Certificado de segurança</Text>
+                <AppText style={styles.feature}>✓ Material de alta qualidade</AppText>
+                <AppText style={styles.feature}>✓ Higienizado após cada uso</AppText>
+                <AppText style={styles.feature}>✓ Tamanhos variados disponíveis</AppText>
+                <AppText style={styles.feature}>✓ Certificado de segurança</AppText>
               </>
             )}
           </View>
@@ -181,15 +182,15 @@ const ProductDetailScreen = ({ route, navigation }) => {
           {startDate && endDate && (
             <View style={styles.summarySection}>
               <View style={styles.summaryRow}>
-                <Text variant="body" color="#666">Subtotal:</Text>
-                <Text variant="h4">R$ {calculateTotal().toLocaleString('pt-BR')}</Text>
+                <AppText variant="body" color="#666">Subtotal:</AppText>
+                <AppText variant="h4">R$ {calculateTotal().toLocaleString('pt-BR')}</AppText>
               </View>
               {product.deposit && (
                 <View style={styles.summaryRow}>
-                  <Text variant="bodySmall" color="#666">+ Caução (devolvível):</Text>
-                  <Text variant="bodySmall" color="#666">
+                  <AppText variant="bodySmall" color="#666">+ Caução (devolvível):</AppText>
+                  <AppText variant="bodySmall" color="#666">
                     R$ {product.deposit.toLocaleString('pt-BR')}
-                  </Text>
+                  </AppText>
                 </View>
               )}
             </View>
@@ -200,7 +201,7 @@ const ProductDetailScreen = ({ route, navigation }) => {
       {/* Botão Fixo */}
       <View style={styles.footer}>
         <View style={styles.footerPrice}>
-          <Text variant="caption" color="#666">Total</Text>
+          <AppText variant="caption" color="#666">Total</AppText>
           <PriceTag
             price={calculateTotal()}
             period={startDate && endDate ? 'total' : 'dia'}

@@ -5,14 +5,12 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
-  Image,
+  Text,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/slices/authSlice';
 import LoginForm from '../../components/organisms/LoginForm';
 import AppText from '../../components/atoms/AppText';
-
-
 
 const LoginScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -54,14 +52,14 @@ const LoginScreen = ({ navigation }) => {
       >
         <View style={styles.logoContainer}>
           <View style={styles.logo}>
-            <Text variant="h1" color="#fff">🏍️</Text>
+            <Text style={{ fontSize: 50, color: '#fff' }}>🏍️</Text>
           </View>
-          <Text variant="h1" style={styles.appName}>
+          <AppText variant="h1" style={styles.appName}>
             Pass by Go
-          </Text>
-          <Text variant="body" color="#666" style={styles.tagline}>
+          </AppText>
+          <AppText variant="body" color="#666" style={styles.tagline}>
             Aluguel de Motos para Trilha
-          </Text>
+          </AppText>
         </View>
 
         <View style={styles.formContainer}>
@@ -73,10 +71,10 @@ const LoginScreen = ({ navigation }) => {
         </View>
 
         <View style={styles.footer}>
-          <Text variant="caption" color="#999" align="center">
+          <AppText variant="caption" color="#999" align="center">
             Ao continuar, você concorda com nossos{'\n'}
             Termos de Uso e Política de Privacidade
-          </Text>
+          </AppText>
         </View>
       </ScrollView>
     </KeyboardAvoidingView>

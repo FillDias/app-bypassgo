@@ -26,18 +26,18 @@ const Header = ({
             style={styles.backButton}
             onPress={onBackPress}
           >
-            <Text variant="h3" color="#fff">←</Text>
+            <AppText variant="h3" color="#fff">←</AppText>
           </TouchableOpacity>
         )}
 
         <View style={styles.titleContainer}>
-          <Text variant="h2" color="#fff" style={styles.title}>
+          <AppText variant="h2" color="#fff" style={styles.title}>
             {title}
-          </Text>
+          </AppText>
           {subtitle && (
-            <Text variant="bodySmall" color="#aaa" style={styles.subtitle}>
+            <AppText variant="bodySmall" color="#aaa" style={styles.subtitle}>
               {subtitle}
-            </Text>
+            </AppText>
           )}
         </View>
 
@@ -46,7 +46,7 @@ const Header = ({
             style={styles.cartButton}
             onPress={onCartPress}
           >
-            <Text style={styles.cartIcon}>🛒</Text>
+            <AppText style={styles.cartIcon}>🛒</AppText>
             {cartCount > 0 && (
               <View style={styles.badgeContainer}>
                 <Badge count={cartCount} size="small" />

@@ -6,31 +6,70 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { setViewMode, filterByCategory, searchProducts } from '../../redux/slices/productsSlice';
+import { setViewMode, filterByCategory, searchProducts, fetchMotocrossBikes  } from '../../redux/slices/productsSlice';
 import { addToCart } from '../../redux/slices/cartSlice';
 import Header from '../../components/organisms/Header';
 import SearchBar from '../../components/molecules/SearchBar';
 import ProductCard from '../../components/organisms/ProductCard';
 import AppText from '../../components/atoms/AppText';
+import { fetchAllMakes } from '../../redux/slices/productsSlice';
 
 
 
 const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const {
+    motorcycles = [],
+    equipment = [],
+    filteredItems = [],
+    selectedCategory = 'Todos',
+    viewMode = 'motorcycles',
+    loading = false,
+    error = null,
+  } = useSelector(state => state.products || {});
+
+  console.log('🏍️ Estado do Redux:', {
     motorcycles,
-    equipment,
+    loading,
+    error,
     filteredItems,
-    selectedCategory,
-    viewMode
-  } = useSelector(state => state.products);
+    viewMode,
+    totalMotos: motorcycles.length
+  });
 
   const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+    // 🔍 TESTE: Primeiro vamos descobrir quais categorias existem
+    const testCategories = async () => {
+      try {
+        const { motorcycleService } = require('../../services/motorcycleApi');
+        const categories = await motorcycleService.getAllCategories();
+        console.log('📂 CATEGORIAS DISPONÍVEIS NA API:', categories);
+      } catch (error) {
+        console.error('❌ Erro ao buscar categorias:', error);
+      }
+    };
+
+    testCategories();
+
+    console.log('🚀 Iniciando busca de motos Honda (ID: 100)...');
+    dispatch(fetchMotocrossBikes(100)); // 100 = Honda
+  }, [dispatch]);
+
+  useEffect(() => {
+    console.log('📊 Motorcycles atualizadas:', motorcycles.length, 'motos');
+    if (motorcycles.length > 0) {
+      console.log('🏍️ Primeira moto:', motorcycles[0]);
+    }
+  }, [motorcycles]);
 
   // Determina quais items mostrar
   const displayItems = filteredItems.length > 0
     ? filteredItems
     : (viewMode === 'motorcycles' ? motorcycles : equipment);
+
+  console.log('📺 Items para exibir:', displayItems.length);
 
   // Categorias dinâmicas baseadas no modo
   const categories = viewMode === 'motorcycles'
@@ -84,13 +123,13 @@ const HomeScreen = ({ navigation }) => {
           ]}
           onPress={() => dispatch(setViewMode('motorcycles'))}
         >
-          <Text
+          <AppText
             variant="body"
             color={viewMode === 'motorcycles' ? '#fff' : '#333'}
             style={styles.toggleText}
           >
             🏍️ Motos
-          </Text>
+          </AppText>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -100,13 +139,13 @@ const HomeScreen = ({ navigation }) => {
           ]}
           onPress={() => dispatch(setViewMode('equipment'))}
         >
-          <Text
+          <AppText
             variant="body"
             color={viewMode === 'equipment' ? '#fff' : '#333'}
             style={styles.toggleText}
           >
             🎽 Equipamentos
-          </Text>
+          </AppText>
         </TouchableOpacity>
       </View>
 
@@ -137,24 +176,41 @@ const HomeScreen = ({ navigation }) => {
               setSearchTerm('');
             }}
           >
-            <Text
+            <AppText
               variant="bodySmall"
               color={selectedCategory === item ? '#fff' : '#333'}
             >
               {item}
-            </Text>
+            </AppText>
           </TouchableOpacity>
         )}
       />
 
       {/* Informações */}
       <View style={styles.infoContainer}>
-        <Text variant="h4" style={styles.infoTitle}>
-          {displayItems.length} {viewMode === 'motorcycles' ? 'motos' : 'itens'} disponíveis
-        </Text>
-        <Text variant="bodySmall" color="#666">
-          Alugue por dia • Sem taxas ocultas
-        </Text>
+        {loading ? (
+          <AppText variant="h4" style={styles.infoTitle}>
+            ⏳ Carregando motos...
+          </AppText>
+        ) : error ? (
+          <>
+            <AppText variant="h4" style={styles.infoTitle} color="#dc3545">
+              ❌ Erro ao carregar
+            </AppText>
+            <AppText variant="bodySmall" color="#666">
+              {error}
+            </AppText>
+          </>
+        ) : (
+          <>
+            <AppText variant="h4" style={styles.infoTitle}>
+              {displayItems.length} {viewMode === 'motorcycles' ? 'motos' : 'itens'} disponíveis
+            </AppText>
+            <AppText variant="bodySmall" color="#666">
+              Alugue por dia • Sem taxas ocultas
+            </AppText>
+          </>
+        )}
       </View>
     </>
   );
@@ -164,10 +220,22 @@ const HomeScreen = ({ navigation }) => {
       <FlatList
         data={displayItems}
         renderItem={renderProduct}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item, index) => `${item.id}-${index}`}
         ListHeaderComponent={renderHeader}
         contentContainerStyle={styles.listContent}
         showsVerticalScrollIndicator={false}
+        ListEmptyComponent={
+          !loading && (
+            <View style={styles.emptyContainer}>
+              <AppText variant="h3" style={styles.emptyText}>
+                {error ? '😔 Erro ao carregar motos' : '🏍️ Nenhuma moto encontrada'}
+              </AppText>
+              <AppText variant="body" color="#666" style={styles.emptySubtext}>
+                {error ? 'Tente novamente mais tarde' : 'Tente ajustar os filtros'}
+              </AppText>
+            </View>
+          )
+        }
       />
     </View>
   );
@@ -236,6 +304,19 @@ const styles = StyleSheet.create({
   },
   productCard: {
     marginHorizontal: 16,
+  },
+  emptyContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 60,
+    paddingHorizontal: 32,
+  },
+  emptyText: {
+    textAlign: 'center',
+    marginBottom: 8,
+  },
+  emptySubtext: {
+    textAlign: 'center',
   },
 });
 

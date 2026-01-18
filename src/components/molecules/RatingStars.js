@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import AppText from '../atoms/AppText';
 
 const RatingStars = ({
@@ -37,9 +37,9 @@ const RatingStars = ({
       </View>
 
       {showNumber && (
-        <Text variant="bodySmall" color="#666" style={styles.ratingText}>
+        <AppText variant="bodySmall" color="#666" style={styles.ratingText}>
           {rating.toFixed(1)}
-        </Text>
+        </AppText>
       )}
     </View>
   );

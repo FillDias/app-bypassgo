@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import Input from '../atoms/Input';
 import Button from '../atoms/Button';
 import AppText from '../atoms/AppText';
@@ -36,13 +36,13 @@ const LoginForm = ({ onLogin, onNavigateToRegister, loading = false }) => {
 
   return (
     <View style={styles.container}>
-      <Text variant="h2" align="center" style={styles.title}>
+      <AppText variant="h2" align="center" style={styles.title}>
         Bem-vindo de volta!
-      </Text>
+      </AppText>
 
-      <Text variant="body" color="#666" align="center" style={styles.subtitle}>
+      <AppText variant="body" color="#666" align="center" style={styles.subtitle}>
         Entre para alugar motos incríveis
-      </Text>
+      </AppText>
 
       <View style={styles.form}>
         <Input
@@ -87,9 +87,9 @@ const LoginForm = ({ onLogin, onNavigateToRegister, loading = false }) => {
       </View>
 
       <View style={styles.footer}>
-        <Text variant="body" color="#666">
+        <AppText variant="body" color="#666">
           Não tem uma conta?{' '}
-        </Text>
+        </AppText>
         <Button
           title="Cadastre-se"
           onPress={onNavigateToRegister}

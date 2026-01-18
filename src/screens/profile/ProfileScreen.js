@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView, Image, TouchableOpacity, Alert } from 'react-native';
+import { View, StyleSheet, ScrollView, Image, TouchableOpacity, Alert, Text } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../redux/slices/authSlice';
 import AppText from '../../components/atoms/AppText';
@@ -29,9 +29,9 @@ const ProfileScreen = () => {
     <TouchableOpacity style={styles.menuItem} onPress={onPress}>
       <View style={styles.menuItemLeft}>
         <Text style={styles.menuIcon}>{icon}</Text>
-        <Text variant="body">{title}</Text>
+        <AppText variant="body">{title}</AppText>
       </View>
-      <Text variant="h4" color="#999">›</Text>
+      <AppText variant="h4" color="#999">›</AppText>
     </TouchableOpacity>
   );
 
@@ -42,32 +42,32 @@ const ProfileScreen = () => {
           source={{ uri: user?.avatar || 'https://via.placeholder.com/150' }}
           style={styles.avatar}
         />
-        <Text variant="h2" style={styles.name}>{user?.name}</Text>
-        <Text variant="body" color="#666">{user?.email}</Text>
-        <Text variant="bodySmall" color="#666" style={styles.phone}>
+        <AppText variant="h2" style={styles.name}>{user?.name}</AppText>
+        <AppText variant="body" color="#666">{user?.email}</AppText>
+        <AppText variant="bodySmall" color="#666" style={styles.phone}>
           {user?.phone}
-        </Text>
+        </AppText>
       </View>
 
       <View style={styles.statsContainer}>
         <View style={styles.statItem}>
-          <Text variant="h3">{rentals?.length || 0}</Text>
-          <Text variant="caption" color="#666">Aluguéis</Text>
+          <AppText variant="h3">{rentals?.length || 0}</AppText>
+          <AppText variant="caption" color="#666">Aluguéis</AppText>
         </View>
         <View style={styles.divider} />
         <View style={styles.statItem}>
-          <Text variant="h3">⭐ 4.8</Text>
-          <Text variant="caption" color="#666">Avaliação</Text>
+          <AppText variant="h3">⭐ 4.8</AppText>
+          <AppText variant="caption" color="#666">Avaliação</AppText>
         </View>
         <View style={styles.divider} />
         <View style={styles.statItem}>
-          <Text variant="h3">R$ 0</Text>
-          <Text variant="caption" color="#666">Economia</Text>
+          <AppText variant="h3">R$ 0</AppText>
+          <AppText variant="caption" color="#666">Economia</AppText>
         </View>
       </View>
 
       <View style={styles.section}>
-        <Text variant="h3" style={styles.sectionTitle}>Minha Conta</Text>
+        <AppText variant="h3" style={styles.sectionTitle}>Minha Conta</AppText>
 
         <MenuItem
           icon="📋"
@@ -92,7 +92,7 @@ const ProfileScreen = () => {
       </View>
 
       <View style={styles.section}>
-        <Text variant="h3" style={styles.sectionTitle}>Configurações</Text>
+        <AppText variant="h3" style={styles.sectionTitle}>Configurações</AppText>
 
         <MenuItem
           icon="👤"
@@ -126,12 +126,12 @@ const ProfileScreen = () => {
       </View>
 
       <View style={styles.footer}>
-        <Text variant="caption" color="#999" align="center">
+        <AppText variant="caption" color="#999" align="center">
           Pass by Go v1.0.0
-        </Text>
-        <Text variant="caption" color="#999" align="center">
+        </AppText>
+        <AppText variant="caption" color="#999" align="center">
           © 2026 Todos os direitos reservados
-        </Text>
+        </AppText>
       </View>
     </ScrollView>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import Text from '../atoms/Text';
+import AppText from '../atoms/AppText';
 import Button from '../atoms/Button';
 import PriceTag from '../molecules/PriceTag';
 
@@ -46,25 +46,25 @@ const CartItem = ({
       <View style={styles.content}>
         <View style={styles.header}>
           <View style={styles.info}>
-            <Text variant="caption" color="#666">{brand}</Text>
-            <Text variant="h4" style={styles.name} numberOfLines={1}>
+            <AppText variant="caption" color="#666">{brand}</AppText>
+            <AppText variant="h4" style={styles.name} numberOfLines={1}>
               {name}
-            </Text>
+            </AppText>
           </View>
 
           <TouchableOpacity
             style={styles.removeButton}
             onPress={() => onRemove(id)}
           >
-            <Text variant="h4" color="#ff6b6b">✕</Text>
+            <AppText variant="h4" color="#ff6b6b">✕</AppText>
           </TouchableOpacity>
         </View>
 
         {showDates && startDate && endDate && (
           <View style={styles.datesContainer}>
-            <Text variant="bodySmall" color="#666">
+            <AppText variant="bodySmall" color="#666">
               📅 {formatDate(startDate)} → {formatDate(endDate)} ({days} dia{days > 1 ? 's' : ''})
-            </Text>
+            </AppText>
           </View>
         )}
 
@@ -74,18 +74,18 @@ const CartItem = ({
               style={styles.quantityButton}
               onPress={() => onUpdateQuantity(id, (quantity || 1) - 1)}
             >
-              <Text variant="h4">-</Text>
+              <AppText variant="h4">-</AppText>
             </TouchableOpacity>
 
-            <Text variant="body" style={styles.quantity}>
+            <AppText variant="body" style={styles.quantity}>
               {quantity || 1}
-            </Text>
+            </AppText>
 
             <TouchableOpacity
               style={styles.quantityButton}
               onPress={() => onUpdateQuantity(id, (quantity || 1) + 1)}
             >
-              <Text variant="h4">+</Text>
+              <AppText variant="h4">+</AppText>
             </TouchableOpacity>
           </View>
 

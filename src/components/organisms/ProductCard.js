@@ -35,24 +35,24 @@ const ProductCard = ({
 
         {!available && (
           <View style={styles.unavailableBadge}>
-            <Text variant="caption" color="#fff">Indisponível</Text>
+            <AppText variant="caption" color="#fff">Indisponível</AppText>
           </View>
         )}
 
         {variant === 'equipment' && stock !== undefined && (
           <View style={styles.stockBadge}>
-            <Text variant="caption" color="#fff">
+            <AppText variant="caption" color="#fff">
               {stock} disponíveis
-            </Text>
+            </AppText>
           </View>
         )}
       </View>
 
       <View style={styles.content}>
         <View style={styles.header}>
-          <Text variant="caption" color="#666" style={styles.brand}>
+          <AppText variant="caption" color="#666" style={styles.brand}>
             {brand || category}
-          </Text>
+          </AppText>
 
           {rating && (
             <RatingStars
@@ -63,9 +63,9 @@ const ProductCard = ({
           )}
         </View>
 
-        <Text variant="h4" style={styles.name} numberOfLines={2}>
+        <AppText variant="h4" style={styles.name} numberOfLines={2}>
           {name}
-        </Text>
+        </AppText>
 
         <View style={styles.footer}>
           <PriceTag price={pricePerDay} period="dia" size="small" />
